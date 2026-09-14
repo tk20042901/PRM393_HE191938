@@ -19,4 +19,26 @@ class Product{
     image: image ?? this.image,
     description: description ?? this.description,
   );
+
+  //json sang product
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      image: json['image'] as String,
+      price: json['price'] as double,
+      description: json['description'] as String
+    );
+  }
+  //product sang json
+  Map<String, dynamic> toJson(){
+    return {
+      "id": id,
+      "name": name,
+      "image": image,
+      "price": price,
+      "description": description,
+    };
+  }
+
 }
