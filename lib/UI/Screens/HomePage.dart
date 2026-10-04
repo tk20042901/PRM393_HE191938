@@ -3,6 +3,7 @@ import 'package:prm393/UI/Screens/app_structure.dart';
 import 'package:prm393/UI/Screens/common_ui.dart';
 import 'package:prm393/UI/Screens/input_screen.dart';
 import 'package:prm393/UI/Screens/now_playing.dart';
+import 'package:prm393/UI/Screens/product_screen.dart';
 import 'package:prm393/UI/Widget/CustomButton.dart';
 import 'core_widgets_demo.dart';
 
@@ -50,6 +51,12 @@ class Homepage extends StatelessWidget {
               text: 'Exercise 5 – Common UI: Demo',
               icon: Icons.chevron_right,
               nextPage: const CommonUI(),
+            ),
+            const SizedBox(height: 20),
+            CustomButton(
+              text: 'Exercise 6 – LAB 4: Demo',
+              icon: Icons.chevron_right,
+              nextPage: const ProductScreen(),
             ),
           ],
         ),

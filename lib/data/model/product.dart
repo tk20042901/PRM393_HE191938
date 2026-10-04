@@ -1,44 +1,60 @@
-class Product{
+class Product {
   final int id;
   final String name;
-  final double price;
-  final String? image;
   final String? description;
+  final double price;
+  final double discountPercen;
+  final String? image;
 
-  Product({required this.id, required this.name, required this.price, this.image, this.description});
+  Product({
+    required this.id,
+    required this.name,
+    this.description,
+    required this.price,
+    this.discountPercen = 0,
+    this.image,
+  });
+
   Product copyTo({
     int? id,
     String? name,
-    String? image,
-    double? price,
     String? description,
+    double? price,
+    double? discountPercen,
+    String? image,
   }) => Product(
     id: id ?? this.id,
     name: name ?? this.name,
-    price: price ?? this.price,
-    image: image ?? this.image,
     description: description ?? this.description,
+    price: price ?? this.price,
+    discountPercen: discountPercen ?? this.discountPercen,
+    image: image ?? this.image,
   );
 
-  //json sang product
+  // Giá sau khi giảm
+  double get discountedPrice => price * (1 - discountPercen / 100);
+
+  // json sang product
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'] as int,
       name: json['name'] as String,
-      image: json['image'] as String,
-      price: json['price'] as double,
-      description: json['description'] as String
+      description: json['description'] as String?,
+      price: (json['price'] as num).toDouble(),
+      discountPercen: (json['discountPercen'] as num?)?.toDouble() ?? 0,
+      image: json['image'] as String?,
     );
   }
-  //product sang json
-  Map<String, dynamic> toJson(){
+
+  // product sang json
+  Map<String, dynamic> toJson() {
     return {
       "id": id,
       "name": name,
-      "image": image,
-      "price": price,
       "description": description,
+      "price": price,
+      "discountPercen": discountPercen,
+      "image": image,
     };
   }
-
-}
+}
